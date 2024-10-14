@@ -24,7 +24,20 @@ const routes = [
  path:'/cliente',
  name:'cliente',
  component: () => import('../views/Cliente.vue')
+},
+{
+  path: '/pitagoras',
+  name: 'pitagoras',
+  component: () => import('../views/Pitagoras.vue')
+},
+
+{
+  path: '/persona',
+  name: 'Persona',
+  component: () => import('../views/Persona.vue')
 }
+
+
 ]
 
 const router = createRouter({
