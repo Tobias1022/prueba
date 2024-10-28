@@ -1,53 +1,45 @@
 <template>
-    
     <h4>Recibiendo datos</h4>
     <div class="row mb-3">
-        <div class="col3">
-
+        <div class="col-3">
             <select @change="capturar_random" v-model="equipo" class="form-select">
                 <option value="-1" selected disabled>Seleccione equipo...</option>
                 <option value="http://">Equipo</option>
-
             </select>
-
         </div>
-
     </div>
 
     <div class="row">
-
         <div class="col-4">
-
             <div class="card">
-
-                <div class="card-header text-center"><b>{{ nombre }}</b></div>
+                <div class="card-header text-center">
+                    <b>{{ nombre }}</b>
+                </div>
                 <div class="card-body text-center">
                     <h1>{{ valor_recibido }}</h1>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer text-center">
                     <h4>{{ estado }}</h4>
                 </div>
             </div>
-
         </div>
 
         <div class="col-4">
             <div class="card">
                 <div class="card-header text-center">
-                    {{descripcion_cpu_free}}
+                    {{ descripcion_cpu_free }}
                 </div>
                 <div class="card-body text-center">
-                    <h1>{{valor_cpu_free}}</h1>
+                    <h1>{{ valor_cpu_free }}</h1>
                 </div>
-                <div class="card-foster">
+                <div class="card-footer text-center">
                     <h4>Valor(%)</h4>
                 </div>
             </div>
         </div>
-
     </div>
-
 </template>
+
 
 <script>
 /* eslint-disable */
