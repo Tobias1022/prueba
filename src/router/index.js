@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { Socket } from 'socket.io-client'
 
 const routes = [
   {
@@ -35,6 +36,12 @@ const routes = [
   path: '/persona',
   name: 'Persona',
   component: () => import('../views/Persona.vue')
+},
+
+{
+  path:'/socket',
+  name:'Socket',
+  component: () => import('../view/Socket.vue')
 }
 
 

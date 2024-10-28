@@ -12,6 +12,7 @@
         <router-link to="/cliente" class="nav-link">Clientes</router-link>
         <router-link to="/pitagoras" class="nav-link">Pitagoras</router-link>
         <router-link to="/persona" class="nav-link">Persona</router-link>
+        <router-link class="nav-link" to="/socket">Indicador</router-link>
       </div>
     </div>
    </div>

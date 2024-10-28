@@ -1,0 +1,99 @@
+<template>
+    
+    <h4>Recibiendo datos</h4>
+    <div class="row mb-3">
+        <div class="col3">
+
+            <select @change="capturar_random" v-model="equipo" class="form-select">
+                <option value="-1" selected disabled>Seleccione equipo...</option>
+                <option value="http://">Equipo</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-4">
+
+            <div class="card">
+
+                <div class="card-header text-center"><b>{{ nombre }}</b></div>
+                <div class="card-body text-center">
+                    <h1>{{ valor_recibido }}</h1>
+                </div>
+                <div class="card-footer">
+                    <h4>{{ estado }}</h4>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    {{descripcion_cpu_free}}
+                </div>
+                <div class="card-body text-center">
+                    <h1>{{valor_cpu_free}}</h1>
+                </div>
+                <div class="card-foster">
+                    <h4>Valor(%)</h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</template>
+
+<script>
+/* eslint-disable */
+import io from 'socket.io-client'
+export default {
+    name:'SocketIndicador',
+    data() {
+        return{
+            valor_recibido:null,
+            estado:'',
+            equipo:'',
+            nombre:'',
+            valor_cpu_free:null,
+            descripcion_cpu_free:''
+
+        }
+    },
+    methods: {
+
+        capturar_random()
+        {
+            //tenemos que conectarnos y/o vincular nuestro cliente con el servidor
+            const socket = io(this.equipo)
+
+            socket.on('dato-socket', (objeto) => {
+                this.valor_recibido = objeto.dato.toFixed(2);
+                this.nombre = objeto.nombre;
+                if(this.valor_recibido > 0.7)
+               {
+                this.estado = 'Excedido'
+               }else{
+                this.estado = 'Normal'
+               }
+            });
+
+            socket.on('datos-cpu', (objeto) => {
+                this.valor_cpu_free = objeto.data;
+                this.descripcion_cpu_free = objeto.descripcion;
+            })
+        }
+    },
+
+    mounted()
+    {
+        this.capturar_random()
+    }
+
+}
+</script>
