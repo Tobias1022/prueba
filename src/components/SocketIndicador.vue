@@ -4,7 +4,7 @@
         <div class="col-3">
             <select @change="capturar_random" v-model="equipo" class="form-select">
                 <option value="-1" selected disabled>Seleccione equipo...</option>
-                <option value="http://">Equipo</option>
+                <option value="http://localhost:3000">Equipo</option>
             </select>
         </div>
     </div>
@@ -64,8 +64,8 @@ export default {
             //tenemos que conectarnos y/o vincular nuestro cliente con el servidor
             const socket = io(this.equipo)
 
-            socket.on('dato-socket', (objeto) => {
-                this.valor_recibido = objeto.dato.toFixed(2);
+            socket.on('cpuPorcentual', (objeto) => {
+                this.valor_recibido = objeto.dato;
                 this.nombre = objeto.nombre;
                 if(this.valor_recibido > 0.7)
                {
@@ -76,7 +76,7 @@ export default {
             });
 
             socket.on('datos-cpu', (objeto) => {
-                this.valor_cpu_free = objeto.data;
+                this.valor_cpu_free = objeto.data.toFixed(2);
                 this.descripcion_cpu_free = objeto.descripcion;
             })
         }
